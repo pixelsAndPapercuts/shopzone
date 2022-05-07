@@ -34,7 +34,7 @@ const Filter = ({ children, handleDrawerToggle }) => {
     <>
       <Divider />
 
-      <FormControl sx={{ width: "100%", p: 2 }}>
+      <FormControl sx={{ p: 2 }}>
         <FormLabel
           sx={{
             color: "text.primary",

@@ -37,7 +37,7 @@ const ProductDetail = () => {
         setIsFetching(false);
       } catch (err) {
         setIsFetching(false);
-        window.alert("Something went wrong. Please try again");
+        ("Something went wrong! Check your connection try again.");
       }
     };
     fetchProduct();

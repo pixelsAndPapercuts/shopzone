@@ -37,7 +37,7 @@ const SignUp = () => {
       .required("Password is required")
       .matches(
         /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
-        "Must Contain minimum 8 and maximum 16 characters, One Uppercase, One Lowercase, One Number and one special case Character"
+        "Must Contain minimum 8 and maximum 16 characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
       ),
   });
 

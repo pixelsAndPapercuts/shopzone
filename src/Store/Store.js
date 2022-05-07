@@ -19,7 +19,9 @@ const AuthSlice = createSlice({
       state.isFetching = false;
       state.isError = false;
       if (state.user) {
-        window.alert("Sign up successful. You may now continue to login");
+        window.alert(
+          "Sign up successful! You may now continue to the login page."
+        );
       } else {
         window.alert("Something went wrong! Please try again.");
       }
@@ -39,7 +41,9 @@ const AuthSlice = createSlice({
       state.isError = false;
       const user = JSON.parse(localStorage.getItem("user"));
       if (!user) {
-        window.alert("You are not registered. Create an account to access.");
+        window.alert(
+          "You are not registered. Create an account to start shopping."
+        );
         return;
       }
       const { firstname, lastname, password } = user;
@@ -53,7 +57,7 @@ const AuthSlice = createSlice({
         localStorage.setItem("isLoggedIn", JSON.stringify(action.payload.user));
         state.isLoggedIn = action.payload.user;
       } else {
-        window.alert("Invalid credentials");
+        window.alert("Invalid credentials!");
       }
     },
     loginFailure(state) {
