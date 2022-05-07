@@ -92,18 +92,27 @@ const Cart = () => {
               {cart.map((product) => (
                 <Card
                   key={product.id}
-                  sx={{ display: "flex", width: "100%", my: 2 }}
+                  sx={{
+                    display: "flex",
+                    width: "100%",
+                    my: 2,
+                  }}
                 >
                   <Box
                     p={1}
                     display="flex"
                     flexDirection="column"
                     justifyContent="center"
+                    sx={{ bgColor: "lightgray" }}
                   >
                     <Link to={`/product/${product.id}`}>
                       <CardMedia
                         component="img"
-                        sx={{ objectFit: "contain", width: 100 }}
+                        sx={{
+                          objectFit: "contain",
+                          minWidth: 50,
+                          maxWidth: 100,
+                        }}
                         image={product.image}
                         alt="cart item image"
                       />
@@ -120,7 +129,7 @@ const Cart = () => {
                       justifyContent: { xs: "center", sm: "space-between" },
                     }}
                   >
-                    <Box>
+                    <Box m={1}>
                       <CardHeader
                         sx={{ height: "12%" }}
                         titleTypographyProps={{
@@ -128,23 +137,20 @@ const Cart = () => {
                           fontSize: { xs: 12, sm: 14 },
                         }}
                         title={product.title}
+                        subheaderTypographyProps={{ color: "text.primary" }}
+                        subheader={`$ ${product.price}`}
                       />
-                      <CardContent sx={{ flex: "1 0 auto" }}>
-                        <Typography component="div">
-                          $ {product.price}
-                        </Typography>
-                      </CardContent>
                     </Box>
                     <Box
                       sx={{
                         display: "flex",
                         width: { xs: "100%", sm: "auto" },
-                        flexDirection: { xs: "row", sm: "column" },
+                        flexDirection: "column",
                         alignItems: "end",
-                        justifyContent: "space-between",
+                        mt: { xs: -4, sm: 0 },
                       }}
                     >
-                      <Typography component="div" mx={2}>
+                      <Typography noWrap component="div" mx={2}>
                         Total: $ {(product.price * product.quantity).toFixed(2)}
                       </Typography>
                       <Box>

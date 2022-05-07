@@ -19,7 +19,6 @@ function Home({ children }) {
     <Box
       sx={{
         display: "flex",
-
         minHeight: "100vh",
         backgroundColor: "lightgray",
       }}
