@@ -79,6 +79,7 @@ const AuthSlice = createSlice({
       state.isError = false;
       localStorage.removeItem("user");
       localStorage.removeItem("isLoggedIn");
+      localStorage.removeItem("cart");
     },
   },
 });
