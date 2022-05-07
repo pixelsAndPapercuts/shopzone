@@ -43,7 +43,7 @@ const Product = ({ product }) => {
       }}
     >
       <CardHeader
-        sx={{ height: "12%", mb: 2 }}
+        sx={{ height: "12%", mb: 2, mt: 1, pl: 1 }}
         avatar={
           <Avatar sx={{ bgcolor: "primary.main" }} aria-label="recipe">
             {product.category[0].toUpperCase()}

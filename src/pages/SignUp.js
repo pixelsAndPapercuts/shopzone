@@ -11,6 +11,7 @@ import {
   Typography,
   Button,
   CircularProgress,
+  Tooltip,
 } from "@mui/material";
 
 import TextField from "../Components/UI/TextField";
@@ -37,7 +38,7 @@ const SignUp = () => {
       .required("Password is required")
       .matches(
         /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
-        "Must Contain minimum 8 and maximum 16 characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+        "Must Contain minimum 8 and maximum 16 characters, One Uppercase, One Lowercase, One Number and One Special Character"
       ),
   });
 
@@ -157,11 +158,16 @@ const SignUp = () => {
                             name="email"
                             type="email"
                           />
-                          <TextField
-                            label="Password"
-                            name="password"
-                            type="password"
-                          />
+                          <Tooltip
+                            title="8-16 characters, One Uppercase, One Lowercase, One Number and One Special Character"
+                            arrow
+                          >
+                            <TextField
+                              label="Password"
+                              name="password"
+                              type="password"
+                            />
+                          </Tooltip>
                         </Box>
                         <Box>
                           <Button

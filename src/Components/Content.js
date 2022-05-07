@@ -16,6 +16,11 @@ const Content = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
+        dispatch(
+          ProductsActions.filterProducts({
+            filter: "all",
+          })
+        );
         dispatch(ProductsActions.getAllProductsStart());
         const res = await instance.get("products");
         dispatch(
