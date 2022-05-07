@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { CartActions } from "../Store/Store";
+import { Link } from "react-router-dom";
 
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
@@ -51,6 +52,8 @@ const Cart = () => {
       sx={{
         display: "flex",
         minHeight: "100vh",
+        minWidth: "100%",
+        flexDirection: "column",
         backgroundColor: "lightgray",
       }}
     >
@@ -97,12 +100,14 @@ const Cart = () => {
                     flexDirection="column"
                     justifyContent="center"
                   >
-                    <CardMedia
-                      component="img"
-                      sx={{ objectFit: "contain", width: 100 }}
-                      image={product.image}
-                      alt="cart item image"
-                    />
+                    <Link to={`/product/${product.id}`}>
+                      <CardMedia
+                        component="img"
+                        sx={{ objectFit: "contain", width: 100 }}
+                        image={product.image}
+                        alt="cart item image"
+                      />
+                    </Link>
                   </Box>
 
                   <Box

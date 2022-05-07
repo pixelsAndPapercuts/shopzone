@@ -62,6 +62,8 @@ const ProductDetail = () => {
       sx={{
         display: "flex",
         minHeight: "100vh",
+        flexDirection: { xs: "column", sm: "row" },
+
         backgroundColor: "lightgray",
       }}
     >

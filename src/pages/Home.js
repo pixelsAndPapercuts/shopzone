@@ -19,6 +19,7 @@ function Home({ children }) {
     <Box
       sx={{
         display: "flex",
+        flexDirection: { xs: "column", sm: "row" },
         minHeight: "100vh",
         backgroundColor: "lightgray",
       }}
