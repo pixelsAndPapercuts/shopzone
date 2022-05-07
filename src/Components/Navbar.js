@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AuthActions } from "../Store/Store";
+import { AuthActions, CartActions } from "../Store/Store";
 import { Link } from "react-router-dom";
 
 import Avatar from "@mui/material/Avatar";
@@ -28,6 +28,7 @@ const Navbar = ({ handleDrawerToggle, showMenu }) => {
 
   const logoutHandler = () => {
     dispatch(AuthActions.logout());
+    dispatch(CartActions.checkoutCart());
   };
 
   const [anchorEl, setAnchorEl] = useState(null);
