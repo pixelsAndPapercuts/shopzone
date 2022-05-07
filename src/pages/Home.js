@@ -19,7 +19,7 @@ function Home({ children }) {
     <Box
       sx={{
         display: "flex",
-        flexDirection: { xs: "column", sm: "row" },
+
         minHeight: "100vh",
         backgroundColor: "lightgray",
       }}
@@ -30,6 +30,8 @@ function Home({ children }) {
         sx={{
           width: { sm: drawerWidth },
           flexShrink: { sm: 0 },
+          display: "flex",
+          flexDirection: { xs: "column", sm: "row" },
         }}
         aria-label="mailbox folders"
       >
