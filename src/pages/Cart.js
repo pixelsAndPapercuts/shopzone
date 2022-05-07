@@ -43,7 +43,7 @@ const Cart = () => {
   const checkoutHandler = () => {
     dispatch(CartActions.checkoutCart());
     localStorage.removeItem("cart");
-    ("Checkout successful!");
+    window.alert("Checkout successful!");
   };
 
   return (
