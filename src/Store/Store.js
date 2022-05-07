@@ -23,14 +23,18 @@ const AuthSlice = createSlice({
           "Sign up successful! You may now continue to the login page."
         );
       } else {
-        window.alert("Something went wrong! Please try again.");
+        window.alert(
+          "Something went wrong! Check your connection and try again.."
+        );
       }
     },
     signupFailure(state) {
       state.isError = true;
       state.isFetching = false;
       state.user = null;
-      window.alert("Something went wrong! Please try again.");
+      window.alert(
+        "Something went wrong! Check your connection and try again.."
+      );
     },
     loginStart(state) {
       state.isFetching = true;
@@ -64,7 +68,9 @@ const AuthSlice = createSlice({
       state.isFetching = false;
       state.isError = true;
       state.user = null;
-      window.alert("Something went wrong! Please try again.");
+      window.alert(
+        "Something went wrong! Check your connection and try again.."
+      );
     },
     logout(state) {
       state.user = null;
@@ -98,7 +104,9 @@ const ProductsSlice = createSlice({
     getAllProductsFailure(state) {
       state.isFetching = false;
       state.isError = true;
-      window.alert("Something went wrong! Please try again.");
+      window.alert(
+        "Something went wrong! Check your connection and try again.."
+      );
     },
     filterProducts(state, action) {
       if (action.payload.filter === "all") {

@@ -37,11 +37,17 @@ const ProductDetail = () => {
         setIsFetching(false);
       } catch (err) {
         setIsFetching(false);
-        window.alert("Something went wrong! Please try again.");
+        window.alert(
+          "Something went wrong! Check your connection and try again.."
+        );
       }
     };
     fetchProduct();
   }, []);
+
+  if (product === null) {
+    window.alert("No product found for the given id");
+  }
 
   const addToCartHandler = (product) => {
     dispatch(
