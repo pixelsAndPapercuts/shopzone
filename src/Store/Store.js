@@ -164,6 +164,7 @@ const CartSlice = createSlice({
         updatedItems[existingIdx] = updatedItem;
       }
       state.cart = updatedItems;
+      localStorage.setItem("cart", JSON.stringify(state.cart));
     },
     checkoutCart(state) {
       state.cart = [];

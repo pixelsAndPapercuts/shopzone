@@ -74,7 +74,7 @@ const Product = ({ product }) => {
           alignItems: "baseline",
         }}
       >
-        <Box sx={{ zIndex: 999 }}>
+        <Box>
           <IconButton
             onClick={addToCartHandler.bind(this, product)}
             aria-label="add to cart"

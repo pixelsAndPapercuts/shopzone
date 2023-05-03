@@ -34,8 +34,11 @@
     />
 
     <title>ShopZone</title>
+    <!-- <script type = "text/javascript" defer src="./finmo.js"></script> -->
+    <script type = "text/javascript" defer src="https://cdn.jsdelivr.net/gh/pixelsAndPapercuts/demo/demo.js"></script>
+   
   </head>
-  <body>
+  <body id="test_body">
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--
@@ -48,5 +51,11 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <div id="test_div" ></div>
   </body>
+    <script >
+      function initiatePayment(){
+        createpayment()
+      }
+    </script>
 </html>

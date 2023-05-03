@@ -21,7 +21,7 @@ import {
 } from "@mui/material";
 import logo from "../assets/shopzone.svg";
 
-const Navbar = ({ handleDrawerToggle, showMenu }) => {
+const Navbar = ({ handleDrawerToggle, showMenu, z }) => {
   const dispatch = useDispatch();
   const { cart } = useSelector((state) => state.cart);
   const { isLoggedIn } = useSelector((state) => state.auth);
@@ -42,11 +42,12 @@ const Navbar = ({ handleDrawerToggle, showMenu }) => {
   };
 
   return (
-    <AppBar
+    <Box
       position="fixed"
       sx={{
         minHeight: "10%",
-        zIndex: { sm: 1201 },
+        width: "100vw",
+        zIndex: { sm: z === 0 ? z : 1201 },
         backgroundColor: "secondary.main",
         display: "flex",
         flexDirection: "row",
@@ -134,7 +135,7 @@ const Navbar = ({ handleDrawerToggle, showMenu }) => {
             alignItems: "center",
           }}
         >
-          <IconButton
+          {/* <IconButton
             onClick={handleClick}
             size="small"
             aria-controls={open ? "account-menu" : undefined}
@@ -145,7 +146,7 @@ const Navbar = ({ handleDrawerToggle, showMenu }) => {
               {isLoggedIn.name[0].toUpperCase()}
             </Avatar>
             <ArrowDropDownIcon sx={{ color: "text.secondary" }} />
-          </IconButton>
+          </IconButton> */}
           <Menu
             anchorEl={anchorEl}
             id="account-menu"
@@ -190,7 +191,7 @@ const Navbar = ({ handleDrawerToggle, showMenu }) => {
           </Menu>
         </Box>
       </Toolbar>
-    </AppBar>
+    </Box>
   );
 };
 

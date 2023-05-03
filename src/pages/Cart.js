@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { CartActions } from "../Store/Store";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, redirect } from "react-router-dom";
 
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
@@ -14,16 +14,25 @@ import {
   CardContent,
   CardHeader,
   CardMedia,
+  CircularProgress,
   Divider,
   IconButton,
+  MenuItem,
+  TextField,
   Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
 import Navbar from "../Components/Navbar";
+import axios from "axios";
+
+const country_currency_map = { AUD: "AU", SGD: "SG", PHP: "PH", THB: "TH" };
 
 const Cart = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { cart } = useSelector((state) => state.cart);
+  const [currency, setCurrency] = useState("AUD");
+  const [loading, setLoading] = useState(false);
 
   const removeCartHandler = (product) => {
     dispatch(
@@ -41,10 +50,51 @@ const Cart = () => {
     );
   };
 
-  const checkoutHandler = () => {
-    dispatch(CartActions.checkoutCart());
-    localStorage.removeItem("cart");
-    window.alert("Checkout successful!");
+  // const checkoutHandler = () => {
+  //   dispatch(CartActions.checkoutCart());
+  //   localStorage.removeItem("cart");
+  //   window.alert("Checkout successful!");
+  // };
+
+  const checkoutHandler = async () => {
+    const cart_new = [...cart];
+    try {
+      setLoading(true);
+      let breakdown = {};
+      cart_new.forEach((item) => {
+        breakdown[item.title] = +(item.quantity * item.price).toFixed(2);
+      });
+
+      const checkout_object = {
+        amount: +cart_new
+          .reduce(
+            (amount, product) => product.price * product.quantity + amount,
+            0
+          )
+          ?.toFixed(2),
+        amount_breakdown: breakdown,
+        currency: currency,
+        country: country_currency_map[currency],
+        redirect_url: "finmo.net",
+      };
+
+      const response = await axios.post(
+        "https://cp-gtwy.qafinmo.net/torc/checkout",
+        checkout_object,
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`,
+            "x-env": "sandbox",
+          },
+        }
+      );
+
+      if (response.data) {
+        navigate(`/checkout?token=${response.data.data.checkout_token}`);
+      }
+    } catch (error) {
+      window.alert("Failed to create payment");
+    }
   };
 
   return (
@@ -224,13 +274,31 @@ const Cart = () => {
                       0
                     )}`}
                   />
+                  <Box p={2}>
+                    <TextField
+                      fullWidth
+                      select
+                      value={currency}
+                      label="Currency"
+                      placeholder="Currency"
+                      onChange={(e) => setCurrency(e.target.value)}
+                      InputLabelProps={{ sx: { color: "black" } }}
+                    >
+                      <MenuItem value="AUD">AUD</MenuItem>
+                      <MenuItem value="PHP">PHP</MenuItem>
+                      <MenuItem value="SGD">SGD</MenuItem>
+                      <MenuItem value="THB">THB</MenuItem>
+                    </TextField>
+                  </Box>
                   <Divider />
                 </Box>
                 <CardActions sx={{ alignSelf: "end" }}>
                   <Button
+                    disabled={loading}
                     onClick={checkoutHandler}
                     variant="contained"
                     endIcon={<ShoppingCartCheckoutIcon />}
+                    startIcon={loading && <CircularProgress size={"2rem"} />}
                   >
                     Checkout
                   </Button>
