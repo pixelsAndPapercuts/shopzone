@@ -286,7 +286,6 @@ const Cart = () => {
                     >
                       <MenuItem value="AUD">AUD</MenuItem>
                       <MenuItem value="PHP">PHP</MenuItem>
-                      <MenuItem value="SGD">SGD</MenuItem>
                       <MenuItem value="THB">THB</MenuItem>
                     </TextField>
                   </Box>
