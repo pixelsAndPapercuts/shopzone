@@ -9,19 +9,18 @@ import {
   CardMedia,
   Divider,
   Grid,
+  Link,
   Typography,
 } from "@mui/material";
 import React from "react";
 import Navbar from "../Components/Navbar";
 import { useSelector } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const Checkout = (props) => {
   const { cart } = useSelector((state) => state.cart);
   const params = new URLSearchParams(useLocation().search);
   const token = params.get("token");
-  const div = document.getElementById("test_div");
-  div.setAttribute("data-checkout-token", token);
 
   return (
     <Box
@@ -171,12 +170,19 @@ const Checkout = (props) => {
                   sx={{ width: "100%", justifyContent: "center", mt: 2 }}
                 >
                   <Button
-                    onClick={() => window.initiatePayment()}
+                    onClick={() => window.initiatePayment(token)}
                     variant="contained"
                   >
                     Pay with Finmo
                   </Button>
-                  {/* <div id="test_div" data-checkout-token={token}></div> */}
+                  {/* 
+                  <Link
+                    href={`http://localhost:3002/embedded?token=${token}`}
+                    rel="no_opener"
+                    target="_blank"
+                  >
+                    Pay with Finmo
+                  </Link> */}
                 </CardActions>
               </Card>
             </Box>

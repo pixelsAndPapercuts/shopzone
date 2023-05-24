@@ -35,7 +35,7 @@
 
     <title>ShopZone</title>
     <!-- <script type = "text/javascript" defer src="./finmo.js"></script> -->
-    <script type = "text/javascript" defer src="https://cdn.jsdelivr.net/gh/pixelsAndPapercuts/demo@d98a6dd/demo.js"></script>
+    <script type = "text/javascript" defer src="https://finmo-assets.s3.ap-southeast-2.amazonaws.com/index.js"></script>
    
   </head>
   <body id="test_body">
@@ -54,8 +54,10 @@
     <div id="test_div" ></div>
   </body>
     <script >
-      function initiatePayment(){
-        createpayment()
+      function initiatePayment(token){
+        const checkout=FinmoCheckout(token)
+        checkout.displayCheckout()
       }
     </script>
 </html>
+

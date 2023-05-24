@@ -47,7 +47,8 @@ const Navbar = ({ handleDrawerToggle, showMenu, z }) => {
       sx={{
         minHeight: "10%",
         width: "100vw",
-        zIndex: { sm: z === 0 ? z : 1201 },
+        // zIndex: { sm: 1201 },
+
         backgroundColor: "secondary.main",
         display: "flex",
         flexDirection: "row",

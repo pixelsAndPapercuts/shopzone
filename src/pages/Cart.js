@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { CartActions } from "../Store/Store";
 import { Link, useNavigate, redirect } from "react-router-dom";
+import { Buffer } from "buffer";
 
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
@@ -25,7 +26,13 @@ import { Box } from "@mui/system";
 import Navbar from "../Components/Navbar";
 import axios from "axios";
 
-const country_currency_map = { AUD: "AU", SGD: "SG", PHP: "PH", THB: "TH" };
+const country_currency_map = {
+  AUD: "AU",
+  SGD: "SG",
+  PHP: "PH",
+  THB: "TH",
+  NZD: "NZ",
+};
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -78,13 +85,17 @@ const Cart = () => {
         redirect_url: "finmo.net",
       };
 
+      let basic_auth = `${process.env.REACT_APP_TOKEN}:${process.env.REACT_APP_SECRET}`;
+      let buff = Buffer.from(basic_auth);
+      let base64data = buff.toString("base64");
+      let authentication = `Basic ${base64data}`;
+
       const response = await axios.post(
-        "https://cp-gtwy.qafinmo.net/torc/checkout",
+        `${process.env.REACT_APP_URL}`,
         checkout_object,
         {
           headers: {
-            Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`,
-            "x-env": "sandbox",
+            Authorization: authentication,
           },
         }
       );
@@ -93,7 +104,7 @@ const Cart = () => {
         navigate(`/checkout?token=${response.data.data.checkout_token}`);
       }
     } catch (error) {
-      window.alert("Failed to create payment");
+      console.log(error);
     }
   };
 
@@ -287,6 +298,7 @@ const Cart = () => {
                       <MenuItem value="AUD">AUD</MenuItem>
                       <MenuItem value="PHP">PHP</MenuItem>
                       <MenuItem value="THB">THB</MenuItem>
+                      <MenuItem value="NZD">NZD</MenuItem>
                     </TextField>
                   </Box>
                   <Divider />
@@ -312,3 +324,10 @@ const Cart = () => {
 };
 
 export default Cart;
+
+<div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>;
