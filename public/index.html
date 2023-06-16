@@ -35,8 +35,11 @@
 
     <title>ShopZone</title>
     <!-- <script type = "text/javascript" defer src="./finmo.js"></script> -->
-    <script type = "text/javascript" defer src="https://finmo-assets.s3.ap-southeast-2.amazonaws.com/index.js"></script>
-   
+    <script
+      type="text/javascript"
+      defer
+      src="https://scripts.finmo.net/v1/js/checkout/checkout.js"
+    ></script>
   </head>
   <body id="test_body">
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -51,13 +54,12 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-    <div id="test_div" ></div>
+    <div id="test_div"></div>
   </body>
-    <script >
-      function initiatePayment(token){
-        const checkout=FinmoCheckout(token)
-        checkout.displayCheckout()
-      }
-    </script>
+  <script>
+    function initiatePayment(token) {
+      const checkout = new FinmoCheckout({ token });
+      checkout.displayCheckout();
+    }
+  </script>
 </html>
-
